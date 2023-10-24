@@ -1,7 +1,7 @@
 import './bootstrap';
 
 import { createApp } from 'vue/dist/vue.esm-bundler.js';
-import { createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 // import components
 import App from "./components/App.vue";
@@ -30,10 +30,11 @@ const routes = [
 ];
 
 
-// const router = createRouter({
-//     history: createWebHistory(),
-//     mode: "history",
-// });
+const router = createRouter({
+    history: createWebHistory(),
+    mode: "history",
+    routes,
+});
 
 
 const app = createApp({
@@ -45,6 +46,6 @@ const app = createApp({
     }
 });
 
-// app.use(router);
+app.use(router);
 
 app.mount("#app");

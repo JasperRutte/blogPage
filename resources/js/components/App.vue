@@ -1,27 +1,22 @@
 <template>
-    <nav class="navbar navbar-expand navbar-dark bg-light shadow p-3 bg-white">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item mx-2">
-                    <router-link class="nav-item nav-link text-black" to="/App">About</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-item nav-link text-black" to="/Blog">Blog</router-link>
-                </li>
-            </ul>
+
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="navbar-nav">
+            <router-link class="nav-item nav-link text-white" to="/">About</router-link>
+            <router-link class="nav-item nav-link text-white" to="/Blog">Blog</router-link>
+            <router-link class="nav-item nav-link text-white" to="/Links">Links</router-link>
+            <router-link class="nav-item nav-link text-white" to="/Login">login</router-link>
         </div>
     </nav>
 
-    <nav class="navbar navbar-expand-lg">
-        <div>
-            <div class="navbar-nav">
-                <router-link class="nav-item nav-link text-white" to="/App">About</router-link>
-                <router-link class="nav-item nav-link text-white" to="/Blog">Blog</router-link>
-                <router-link class="nav-item nav-link text-white" to="/Links">Links</router-link>
-                <router-link class="nav-item nav-link  text-white" to="/Login">Login</router-link>
-            </div>
-        </div>
-    </nav>
+    <form>
+        <input name="email">
+        <input name="password">
+    </form>
+
+    <button @click="test"></button>
+
 
     <router-view></router-view>
 </template>
@@ -30,14 +25,50 @@
 import axios from "axios";
 export default {
     name: "App",
+    data() {
+        return {
+            loginDetails: {
+                email: "upton.zackery@example.org",
+                password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"
+            }
+        }
+    },
     mounted() {
+    },
+    methods: {
+        test() {
+            axios.post('/api/login', this.loginDetails)
+                .then(response => {
+                    console.log("test")
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
     }
 }
 </script>
 
 <style>
+#container-center {
+    margin: auto;
+    width: 500px;
+    background-color: #679198;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#blogPost {
+    margin: 20px;
+    width: 150px;
+    height: 150px;
+    background-color: #8eacb0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 body {
-    background-color: #0c1213;
+    background-color: #151d1e;
 }
 
 h1, h2, h3, p {
