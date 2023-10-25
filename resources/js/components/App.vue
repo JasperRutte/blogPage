@@ -10,12 +10,8 @@
         </div>
     </nav>
 
-    <form>
-        <input name="email">
-        <input name="password">
-    </form>
 
-    <button @click="test"></button>
+    <button @click="test" class="btn btn-secondary">hjkjhkh</button>
 
 
     <router-view></router-view>
@@ -28,7 +24,7 @@ export default {
     data() {
         return {
             loginDetails: {
-                email: "upton.zackery@example.org",
+                email: "coberbrunner@example.com",
                 password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"
             }
         }
@@ -37,7 +33,7 @@ export default {
     },
     methods: {
         test() {
-            axios.post('/api/login', this.loginDetails)
+            axios.post('/api/tokens/create')
                 .then(response => {
                     console.log("test")
                 })
