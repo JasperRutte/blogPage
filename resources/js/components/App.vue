@@ -11,8 +11,6 @@
     </nav>
 
 
-    <button @click="test" class="btn btn-secondary">hjkjhkh</button>
-
 
     <router-view></router-view>
 </template>
@@ -21,33 +19,15 @@
 import axios from "axios";
 export default {
     name: "App",
-    data() {
-        return {
-            loginDetails: {
-                email: "coberbrunner@example.com",
-                password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"
-            }
-        }
-    },
     mounted() {
     },
-    methods: {
-        test() {
-            axios.post('/api/tokens/create')
-                .then(response => {
-                    console.log("test")
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        }
-    }
+    methods: {},
 }
 </script>
 
 <style>
 #container-center {
-    margin: auto;
+    margin: 50px auto auto;
     width: 500px;
     background-color: #679198;
     padding: 10px;
