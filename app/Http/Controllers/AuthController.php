@@ -39,4 +39,16 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        try {
+            auth()->user()->tokens()->delete();
+            auth()->logout();
+        } catch (InvalidOrderException  $error) {
+            return response(["message"=>"already logger out"]);
+        }
+
+            return response(["message"=>"logged out"]);
+    }
 }

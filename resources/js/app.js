@@ -8,6 +8,7 @@ import App from "./components/App.vue";
 import Blog from "@/components/Blog.vue";
 import Links from "@/components/Links.vue";
 import Login from "@/components/Login.vue";
+import axios from "axios";
 
 // route components
 const routes = [
@@ -49,3 +50,6 @@ const app = createApp({
 app.use(router);
 
 app.mount("#app");
+
+const savedToken = localStorage.getItem('token');
+axios.defaults.headers.common = {'Authorization': `Bearer ${savedToken}`};

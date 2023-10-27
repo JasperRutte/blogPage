@@ -8,7 +8,7 @@
             <input type="password" v-model="loginDetails.password" placeholder="YouShallNotPass">
         </form>
         <br>
-        <button class="btn btn-primary" @click="test()">Login</button>
+        <button class="btn btn-primary" @click="userLogin()">Login</button>
 
 
     </div>
@@ -28,19 +28,25 @@ export default {
 
     },
     methods: {
-        test() {
+        userLogin() {
             axios.post('/api/login', this.loginDetails)
                 .then(response => {
-                    // console.log(response.data.accessToken)
-                    const token = response.data.accessToken
+                    const token = response.data.accessToken;
                     axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
-                    console.log(axios.defaults.headers.common)
-                    console.log("test")
+                    localStorage.setItem('token', token);
+
+                    axios.get('/api/user')
+                        .then(userResponse => {
+                        console.log(userResponse);
+                        })
+                        .catch(error =>{
+                            console.log(error);
+                        })
                 })
                 .catch(error => {
                     console.log(error)
                 })
-        }
+        },
     }
 }
 

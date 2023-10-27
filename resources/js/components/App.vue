@@ -1,14 +1,18 @@
 <template>
 
 
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" >
         <div class="navbar-nav">
             <router-link class="nav-item nav-link text-white" to="/">About</router-link>
-            <router-link class="nav-item nav-link text-white" to="/Blog">Blog</router-link>
-            <router-link class="nav-item nav-link text-white" to="/Links">Links</router-link>
-            <router-link class="nav-item nav-link text-white" to="/Login">login</router-link>
+            <router-link class="nav-item nav-link text-white" to="/blog">Blog</router-link>
+            <router-link class="nav-item nav-link text-white" to="/links">Links</router-link>
+            <router-link class="nav-item nav-link text-white" to="/login">login</router-link>
         </div>
     </nav>
+
+    <button @click="userData">dwadawdaw</button>
+    <button @click="test">test</button>
+    <button @click="logout">logout</button>
 
 
 
@@ -19,9 +23,37 @@
 import axios from "axios";
 export default {
     name: "App",
+    data(){
+    },
+
     mounted() {
     },
-    methods: {},
+    methods: {
+        userData() {
+            axios.get('api/user')
+                .then(response => {
+                    console.log(response);
+                    console.log(axios.defaults.headers.common);
+                    console.log(localStorage.getItem('userData'))
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+
+        logout() {
+            axios.post('api/logout')
+                .then(response => {
+                    axios.defaults.headers.common = null
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userData');
+                    this.$router.push('/login');
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+    },
 }
 </script>
 
