@@ -13,7 +13,7 @@
         <div v-else-if="loggedIn">
             <h1>{{userDetails.name}}</h1>
             <p>mail: {{userDetails.email}}</p>
-            <button @click="logout" class="btn btn-danger">Logout</button>
+            <button @click="UserLogout" class="btn btn-danger">Logout</button>
         </div>
 
     </div>
@@ -51,7 +51,8 @@ export default {
                         .then(userResponse => {
                             localStorage.setItem('name', userResponse.data.name)
                             localStorage.setItem('email', userResponse.data.email)
-                        console.log(userResponse);
+                            console.log(userResponse);
+                            window.location.reload()
                         })
                         .catch(error =>{
                             console.log(error);
@@ -61,13 +62,13 @@ export default {
                     console.log(error)
                 })
         },
-        logout() {
+        UserLogout() {
             axios.post('api/logout')
                 .then(response => {
                     axios.defaults.headers.common = null
                     localStorage.removeItem('token');
                     localStorage.removeItem('userData');
-                    this.$router.push('/login');
+                    window.location.reload()
                 })
                 .catch(error => {
                     console.log(error);
