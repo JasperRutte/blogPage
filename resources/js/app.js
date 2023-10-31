@@ -5,35 +5,35 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // import components
 import App from "./components/App.vue";
-import Blog from "@/components/Blog.vue";
-import Links from "@/components/Links.vue";
-import Login from "@/components/Login.vue";
+import Blog from "./components/Blog.vue";
+import Links from "./components/Links.vue";
+import Account from "./components/Account.vue";
 import axios from "axios";
 
 // route components
 const routes = [
     {
-        path: "/App",
+        path: "/app",
         component: App
     },
     {
-        path: "/Blog",
+        path: "/blog",
         component: Blog
     },
     {
-        path: "/Links",
+        path: "/links",
         component: Links
     },
     {
-        path: "/Login",
-        component: Login
+        path: "/account",
+        component: Account
     },
 ];
 
 
 const router = createRouter({
     history: createWebHistory(),
-    mode: "history",
+
     routes,
 });
 
@@ -43,7 +43,7 @@ const app = createApp({
         App,
         Blog,
         Links,
-        Login
+        Account
     }
 });
 

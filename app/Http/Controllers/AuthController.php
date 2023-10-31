@@ -46,7 +46,7 @@ class AuthController extends Controller
             auth()->user()->tokens()->delete();
             auth()->logout();
         } catch (InvalidOrderException  $error) {
-            return response(["message"=>"already logger out"]);
+            return response(["message"=>"already logged out"]);
         }
 
             return response(["message"=>"logged out"]);
