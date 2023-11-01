@@ -34,3 +34,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
+
+//Route::middleware('custom.error')->get('api/user', 'YourController@yourMethod');

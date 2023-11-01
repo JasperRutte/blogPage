@@ -37,3 +37,4 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Import Bootstrap scripts
 import 'bootstrap';
 
+axios.defaults.withCredentials = true;

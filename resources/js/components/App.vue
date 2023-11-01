@@ -10,10 +10,6 @@
         </div>
     </nav>
 
-    <button @click="userData">userData</button>
-
-
-
     <router-view></router-view>
 </template>
 
@@ -22,20 +18,18 @@ import axios from "axios";
 export default {
     name: "App",
     data(){
+        axios.get('api/user')
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     },
 
     mounted() {
     },
     methods: {
-        userData() {
-            axios.get('api/user')
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        },
     },
 }
 </script>
