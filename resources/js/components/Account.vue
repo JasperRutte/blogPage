@@ -15,7 +15,6 @@
             <p>mail: {{userDetails.email}}</p>
             <button @click="UserLogout" class="btn btn-danger">Logout</button>
         </div>
-
     </div>
 </template>
 
@@ -51,8 +50,7 @@ export default {
                         .then(userResponse => {
                             localStorage.setItem('name', userResponse.data.name)
                             localStorage.setItem('email', userResponse.data.email)
-                            console.log(userResponse);
-                            window.location.reload()
+                            this.$router.go()
                         })
                         .catch(error =>{
                             console.log(error);
@@ -68,7 +66,7 @@ export default {
                     axios.defaults.headers.common = null
                     localStorage.removeItem('token');
                     localStorage.removeItem('userData');
-                    window.location.reload()
+                    this.$router.go()
                 })
                 .catch(error => {
                     console.log(error);

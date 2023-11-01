@@ -6,8 +6,15 @@
 export default {
     data() {
         return {
-            test: 10,
         }
+    },
+
+    mounted() {
+
+    },
+
+    methods: {
+
     }
 }
 

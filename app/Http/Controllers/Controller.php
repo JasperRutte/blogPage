@@ -13,13 +13,4 @@ class Controller extends BaseController
     {
         return view("welcome");
     }
-    public function checkAuthentication()
-    {
-        if (auth()->check()) {
-            return response()->json(['authenticated' => true]);
-        } else {
-            return response()->json(['authenticated' => false]);
-        }
-    }
-
 }

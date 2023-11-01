@@ -8,38 +8,35 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Login user and create token
-     *
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [boolean] remember_me
-     */
-
+//    manages user authentication
     public function login(Request $request)
     {
-        $tnp = $request->validate([
+        $validateUser = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+
         ]);
-        $credentials = request(['email','password']);
+        $credentials = request([
+            'email',
+            'password'
+        ]);
+
         if(!Auth::attempt($credentials))
         {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ],401);
+            return response()->json(['message' => 'User does not exist'],401);
         }
 
         $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
+        $tokenResult = $user->createToken('Personal access token');
         $token = $tokenResult->plainTextToken;
 
         return response()->json([
-            'accessToken' =>$token,
+            'accessToken' => $token,
             'token_type' => 'Bearer',
         ]);
     }
 
+// manages user logout
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
