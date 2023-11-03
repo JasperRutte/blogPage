@@ -8,6 +8,8 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+
+
 //    manages user authentication
     public function login(Request $request)
     {
@@ -29,6 +31,7 @@ class AuthController extends Controller
         $user = $request->user();
         $tokenResult = $user->createToken('Personal access token');
         $token = $tokenResult->plainTextToken;
+
 
         return response()->json([
             'accessToken' => $token,

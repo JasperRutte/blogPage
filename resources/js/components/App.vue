@@ -10,26 +10,45 @@
         </div>
     </nav>
 
+    <button class="btn btn-primary" @click="test">dwada</button>
+
     <router-view></router-view>
 </template>
 
 <script>
 import axios from "axios";
+
 export default {
+
     name: "App",
     data(){
+        return {
+        }
+
+    },
+
+    mounted() {
         axios.get('api/user')
             .then(response => {
-                console.log(response);
+                localStorage.setItem('userData', JSON.stringify(response.data))
+                console.log('test',  JSON.parse(localStorage.getItem('userData')));
+                // console.log(response);
             })
             .catch(error => {
                 console.log(error);
             })
     },
-
-    mounted() {
-    },
     methods: {
+        test(){
+            axios.get('api/test')
+                .then(response =>{
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+
     },
 }
 </script>

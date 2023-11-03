@@ -11,8 +11,8 @@
             <button class="btn btn-primary" @click="userLogin()">Login</button>
         </div>
         <div v-else-if="loggedIn">
-            <h1>{{userDetails.name}}</h1>
-            <p>mail: {{userDetails.email}}</p>
+            <h1>{{ user.name }}</h1>
+            <p>mail: {{user.email}}</p>
             <button @click="UserLogout" class="btn btn-danger">Logout</button>
         </div>
     </div>
@@ -20,24 +20,19 @@
 
 <script>
 import axios from "axios";
-
 export default {
+
     data() {
         return {
             loggedIn: localStorage.getItem('token'),
-            userDetails: {
-                name: localStorage.getItem('name'),
-                email: localStorage.getItem('email')
-            },
             loginDetails: {
                 email: "",
-                password: ""
+                password: "",
             },
         }
 
     },
     mounted(){
-
     },
     methods: {
         userLogin() {
@@ -48,8 +43,7 @@ export default {
                     localStorage.setItem('token', token);
                     axios.get('/api/user')
                         .then(userResponse => {
-                            localStorage.setItem('name', userResponse.data.name)
-                            localStorage.setItem('email', userResponse.data.email)
+                            localStorage.setItem('userData', response.data)
                             this.$router.go()
                         })
                         .catch(error =>{

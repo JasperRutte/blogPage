@@ -1,8 +1,10 @@
 <template>
-    <p>blog</p>
+    <button @click="test"></button>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
@@ -14,7 +16,17 @@ export default {
     },
 
     methods: {
-
+        test () {
+            axios.get('/api/create')
+                .then(response => {
+                    console.log("works")
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log("error")
+                    console.log(error)
+                })
+        }
     }
 }
 

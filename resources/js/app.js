@@ -30,6 +30,22 @@ const routes = [
     },
 ];
 
+// vue mixin
+// computed: {
+//     user() {
+//         return localStorage.getItem("userData")
+//     }
+//
+
+export const userMixin = {
+    computed: {
+        user() {
+        return JSON.parse(localStorage.getItem('userData'))
+        }
+    }
+}
+
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -48,8 +64,10 @@ const app = createApp({
 });
 
 app.use(router);
-
+app.mixin(userMixin)
 app.mount("#app");
 
 const savedToken = localStorage.getItem('token');
 axios.defaults.headers.common = {'Authorization': `Bearer ${savedToken}`};
+
+
