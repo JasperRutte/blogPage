@@ -24,6 +24,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use \App\Http\Controllers\BlogController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,4 +35,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/test', [AuthController::class, 'test']);
 
-Route::get('/create', [\App\Http\Controllers\BlogController::class, 'create']);
+Route::post('/create', [BlogController::class, 'create']);
+Route::get('/index', [BlogController::class, 'index']);
