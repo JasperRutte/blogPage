@@ -37,3 +37,4 @@ Route::get('/test', [AuthController::class, 'test']);
 
 Route::post('/create', [BlogController::class, 'create']);
 Route::get('/index', [BlogController::class, 'index']);
+Route::post('/show',[BlogController::class, 'show']);

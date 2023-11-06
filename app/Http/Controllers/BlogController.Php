@@ -35,6 +35,11 @@ class BlogController extends Controller
         $newBlogPost->save();
     }
 
+    public function show($id) {
+        $specificBlogPost = BlogPost::find($id);
+        return ["blog"=>$specificBlogPost];
+    }
+
     public function delete(Request $request){
 //
     }

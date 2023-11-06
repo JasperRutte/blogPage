@@ -41,10 +41,10 @@ export default {
                     const token = response.data.accessToken;
                     axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
                     localStorage.setItem('token', token);
-                    axios.get('/api/user')
+                    location.reload()
+                    // axios.get('/api/user')
                         .then(userResponse => {
                             localStorage.setItem('userData', response.data)
-                            this.$router.go()
                         })
                         .catch(error =>{
                             console.log(error);
@@ -60,7 +60,7 @@ export default {
                     axios.defaults.headers.common = null
                     localStorage.removeItem('token');
                     localStorage.removeItem('userData');
-                    this.$router.go()
+                    location.reload()
                 })
                 .catch(error => {
                     console.log(error);

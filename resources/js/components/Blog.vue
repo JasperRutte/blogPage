@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div v-for="blog in blogPosts" id="blogPost" class="col-6">
+        <div v-for="blog in blogPosts" id="blogPost" class="col-6" @click="showBlog(blog.id)">
             <h1>{{blog.title}}</h1>
             <p>{{blog.body}}</p>
         </div>
@@ -42,6 +42,17 @@ export default {
     methods: {
         createBlog () {
             axios.post('/api/create', this.blogData)
+                .then(response => {
+                    console.log("works")
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log("error")
+                    console.log(error)
+                })
+        },
+        showBlog(blogId){
+            axios.post('/api/show', blogId)
                 .then(response => {
                     console.log("works")
                     console.log(response)
