@@ -3,14 +3,12 @@
 
     <nav class="navbar navbar-expand-lg" >
         <div class="navbar-nav">
-            <router-link class="nav-item nav-link text-white" to="/">About</router-link>
-            <router-link class="nav-item nav-link text-white" to="/blog">Blog</router-link>
-            <router-link class="nav-item nav-link text-white" to="/links">Links</router-link>
-            <router-link class="nav-item nav-link text-white" to="/account">Account</router-link>
+            <router-link class="nav-item nav-link" to="/">About</router-link>
+            <router-link class="nav-item nav-link" to="/blog">Blog</router-link>
+            <router-link class="nav-item nav-link" to="/links">Links</router-link>
+            <router-link class="nav-item nav-link" to="/account">Account</router-link>
         </div>
     </nav>
-
-    <button class="btn btn-primary" @click="test">dwada</button>
 
     <router-view></router-view>
 </template>
@@ -38,51 +36,33 @@ export default {
                 console.log(error);
             })
     },
-    methods: {
-        test(){
-            axios.get('api/test')
-                .then(response =>{
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        }
-
-    },
 }
 </script>
 
 <style>
+
+body {
+    background-color: #FFFFFF;
+}
+
+nav {
+    box-shadow: 0 0 1px black;
+    background-color: #F4F4F4;
+}
+
 #container-center {
     margin: 50px auto auto;
-    width: 500px;
-    background-color: #679198;
+    width: 1500px;
     padding: 10px;
     border-radius: 5px;
 }
 
-#blogPost {
-    margin: 20px;
-    width: 150px;
-    height: 150px;
-    background-color: #8eacb0;
-    padding: 10px;
+#container {
+    margin: 50px auto auto;
+    width: 50%;
+    background-color: #F4F4F4;
+    padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 2px 3px darkgrey;
 }
-
-body {
-    background-color: #151d1e;
-}
-
-h1, h2, h3, p {
-    color: white;
-}
-
-
-nav {
-    box-shadow: 0 0 1px ghostwhite;
-    background-color: #0c1213;
-}
-
 </style>

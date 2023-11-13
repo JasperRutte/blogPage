@@ -1,21 +1,17 @@
 <template>
-    <div class="row">
-        <div v-for="blog in blogPosts" id="blogPost" class="col-6" @click="showBlog(blog.id)">
-            <h1>{{blog.title}}</h1>
-            <p>{{blog.body}}</p>
+    <div class="row" id="container-center">
+        <h1>Blogs.</h1>
+            <div v-for="blog in blogPosts" id="blogPost" @click="this.$router.push('/ViewBlog/' + blog.id)">
+                <h1>{{blog.title}}</h1>
+                <p>{{blog.body}}</p>
+            </div>
+            <div v-if="user" id="blogPost" @click="this.$router.push('/CreateBlog')">
+                <div class="align-middle">
+                    <h1 class="text-center">+</h1>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div v-if="user" id="container-center">
-        <form>
-            <h1>Create a blog</h1>
-            <label>Title</label><br>
-            <input class="form-control" v-model="blogData.title"><br>
-            <label>Contents</label><br>
-            <textarea class="form-control" v-model="blogData.contents"></textarea><br>
-        </form>
-        <button @click="createBlog" class="btn btn-primary">Submit</button>
-    </div>
 </template>
 
 <script>
@@ -38,31 +34,18 @@ export default {
                 this.blogPosts = response.data
             })
     },
-
-    methods: {
-        createBlog () {
-            axios.post('/api/create', this.blogData)
-                .then(response => {
-                    console.log("works")
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log("error")
-                    console.log(error)
-                })
-        },
-        showBlog(blogId){
-            axios.post('/api/show', blogId)
-                .then(response => {
-                    console.log("works")
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log("error")
-                    console.log(error)
-                })
-        }
-    }
 }
 
 </script>
+
+<style>
+    #blogPost {
+        margin: 20px 20px;
+        width: 300px;
+        height: 330px;
+        background-color: #F4F4F4;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px darkgrey;
+    }
+</style>

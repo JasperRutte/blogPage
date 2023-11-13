@@ -37,11 +37,17 @@ class BlogController extends Controller
 
     public function show($id) {
         $specificBlogPost = BlogPost::find($id);
+//        dd($specificBlogPost);
         return ["blog"=>$specificBlogPost];
     }
 
-    public function delete(Request $request){
-//
+    public function delete($id){
+        if (!auth()->user()) {
+            return response()->json(['message' => 'User not logged in'],401);
+        }
+
+        $deletedBlog = BlogPost::find($id);
+        $deletedBlog->delete();
     }
 
 

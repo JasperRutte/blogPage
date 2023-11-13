@@ -1,20 +1,22 @@
 <template>
-    <div id="container-center">
-        <div v-if="!loggedIn">
-            <form>
-                <h1 class="display-6">Login</h1>
-                <label  for="email">email</label><br>
-                <input placeholder="johndoe@example.example" v-model="loginDetails.email"><br><br>
-                <label for="Password">password</label><br>
-                <input type="password" v-model="loginDetails.password" placeholder="YouShallNotPass"><br>
-            </form>
-            <button class="btn btn-primary" @click="userLogin()">Login</button>
-        </div>
-        <div v-else-if="loggedIn">
+    <div id="container">
+        <div v-if="user">
             <h1>{{ user.name }}</h1>
             <p>mail: {{user.email}}</p>
             <button @click="UserLogout" class="btn btn-danger">Logout</button>
         </div>
+
+        <div v-else="!loggedIn">
+            <form>
+                <h1 class="display-6">Login</h1>
+                <label  for="email">email</label><br>
+                <input placeholder="johndoe@example.example" v-model="loginDetails.email" class="form-control"><br><br>
+                <label for="Password">password</label><br>
+                <input type="password" v-model="loginDetails.password" placeholder="YouShallNotPass" class="form-control"><br>
+            </form>
+            <button class="btn btn-primary" @click="userLogin()">Login</button>
+        </div>
+
     </div>
 </template>
 
@@ -28,11 +30,14 @@ export default {
             loginDetails: {
                 email: "",
                 password: "",
+                loadPage: false,
             },
         }
 
     },
     mounted(){
+        this.loggedIn = false
+
     },
     methods: {
         userLogin() {
@@ -41,8 +46,7 @@ export default {
                     const token = response.data.accessToken;
                     axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
                     localStorage.setItem('token', token);
-                    location.reload()
-                    // axios.get('/api/user')
+                    axios.get('/api/user')
                         .then(userResponse => {
                             localStorage.setItem('userData', response.data)
                         })
@@ -54,6 +58,7 @@ export default {
                     console.log(error)
                 })
         },
+
         UserLogout() {
             axios.post('api/logout')
                 .then(response => {

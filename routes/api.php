@@ -36,5 +36,6 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/test', [AuthController::class, 'test']);
 
 Route::post('/create', [BlogController::class, 'create']);
+Route::delete('delete/{id}', [BlogController::class, 'delete']);
 Route::get('/index', [BlogController::class, 'index']);
-Route::post('/show',[BlogController::class, 'show']);
+Route::get('/show/{id}',[BlogController::class, 'show']);

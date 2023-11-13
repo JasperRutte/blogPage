@@ -8,6 +8,8 @@ import App from "./components/App.vue";
 import Blog from "./components/Blog.vue";
 import Links from "./components/Links.vue";
 import Account from "./components/Account.vue";
+import CreateBlog from "./components/CreateBlog.vue"
+import ViewBlog from "./components/ViewBlog.vue";
 import axios from "axios";
 
 // route components
@@ -27,6 +29,14 @@ const routes = [
     {
         path: "/account",
         component: Account
+    },
+    {
+        path: "/CreateBlog",
+        component: CreateBlog
+    },
+    {
+        path: "/ViewBlog/:id",
+        component: ViewBlog
     },
 ];
 
@@ -59,7 +69,9 @@ const app = createApp({
         App,
         Blog,
         Links,
-        Account
+        Account,
+        CreateBlog,
+        ViewBlog
     }
 });
 
