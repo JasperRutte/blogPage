@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use function Laravel\Prompts\password;
+
 //use Validator;
 
 class AuthController extends Controller
@@ -40,14 +42,20 @@ class AuthController extends Controller
     }
 
 // manages user logout
-    public function logout(Request $request)
+    public function logout()
     {
-//        if (auth()->user()->tokens()) ;
-//        {
-//            auth()->user()->tokens()->delete();
-//        }
-        auth()->user()->tokens()->delete();
+//        auth()->user()->tokens()->delete();
         auth()->logout();
         return response(["message"=>"logged out"]);
+    }
+
+    public function authenticatedCheck()
+    {
+        dd(auth()->user()->tokens());
+        if (auth()->user() === null){
+            auth()->logout();
+            return response()->json(["message" => "user logged out"], 401);
+        }
+        return response(["message"=>"still logged in"]);
     }
 }

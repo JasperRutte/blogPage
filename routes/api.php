@@ -34,8 +34,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/test', [AuthController::class, 'test']);
+Route::post('/authCheck',[AuthController::class, 'authenticatedCheck']);
 
 Route::post('/create', [BlogController::class, 'create']);
 Route::delete('delete/{id}', [BlogController::class, 'delete']);
 Route::get('/index', [BlogController::class, 'index']);
 Route::get('/show/{id}',[BlogController::class, 'show']);
+
+

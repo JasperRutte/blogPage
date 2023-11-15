@@ -50,7 +50,7 @@ const routes = [
 export const userMixin = {
     computed: {
         user() {
-        return JSON.parse(localStorage.getItem('userData'))
+            return JSON.parse(localStorage.getItem('userData'))
         }
     }
 }

@@ -2,7 +2,7 @@
     <div id="container">
         <h1>{{blogPost.title}}</h1><br>
         <p>{{blogPost.body}}</p><br>
-        <button class="btn btn-danger" @click="removeBlog">Delete</button>
+        <button class="btn btn-danger" @click="removeBlog" v-if="user">Delete</button>
     </div>
 
 </template>

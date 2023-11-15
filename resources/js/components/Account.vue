@@ -6,7 +6,7 @@
             <button @click="UserLogout" class="btn btn-danger">Logout</button>
         </div>
 
-        <div v-else="!loggedIn">
+        <div v-else>
             <form>
                 <h1 class="display-6">Login</h1>
                 <label  for="email">email</label><br>
@@ -16,7 +16,6 @@
             </form>
             <button class="btn btn-primary" @click="userLogin()">Login</button>
         </div>
-
     </div>
 </template>
 
@@ -26,19 +25,19 @@ export default {
 
     data() {
         return {
-            loggedIn: localStorage.getItem('token'),
+            loggedIn: false,
             loginDetails: {
-                email: "",
-                password: "",
+                email: "bins.chaya@example.net",
+                password: "test123",
                 loadPage: false,
             },
         }
 
     },
     mounted(){
-        this.loggedIn = false
 
     },
+
     methods: {
         userLogin() {
             axios.post('/api/login', this.loginDetails)
@@ -48,7 +47,10 @@ export default {
                     localStorage.setItem('token', token);
                     axios.get('/api/user')
                         .then(userResponse => {
-                            localStorage.setItem('userData', response.data)
+                            console.log(userResponse)
+                            console.log(response)
+                            localStorage.setItem('userData', JSON.stringify(userResponse.data));
+                            location.reload()
                         })
                         .catch(error =>{
                             console.log(error);
@@ -75,7 +77,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>
