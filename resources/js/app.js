@@ -10,6 +10,7 @@ import Links from "./components/Links.vue";
 import Account from "./components/Account.vue";
 import CreateBlog from "./components/CreateBlog.vue"
 import ViewBlog from "./components/ViewBlog.vue";
+import JasperRutte from "./components/JasperRutte.vue";
 import axios from "axios";
 
 // route components
@@ -37,6 +38,10 @@ const routes = [
     {
         path: "/ViewBlog/:id",
         component: ViewBlog
+    },
+    {
+        path: "/JasperRutte",
+        component: JasperRutte
     },
 ];
 
@@ -71,7 +76,8 @@ const app = createApp({
         Links,
         Account,
         CreateBlog,
-        ViewBlog
+        ViewBlog,
+        JasperRutte
     }
 });
 

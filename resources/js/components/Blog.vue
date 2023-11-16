@@ -1,16 +1,20 @@
 <template>
     <div class="row" id="container-center">
         <h1>Blogs.</h1>
-            <div v-for="blog in blogPosts" id="blogPost" class="cards" @click="this.$router.push('/ViewBlog/' + blog.id)">
+            <div v-for="blog in blogPosts" class="cards card p-3 col-md-5 col-lg-3" @click="this.$router.push('/ViewBlog/' + blog.id)">
+                <div class="">
                     <h1>{{blog.title}}</h1>
                     <p>{{blog.body}}</p>
+                </div>
+
+                    </div>
+
             </div>
             <div v-if="user" id="blogPost" class="cards" @click="this.$router.push('/CreateBlog')">
                 <div class="align-middle">
                     <h1 class="text-center">+</h1>
                 </div>
             </div>
-        </div>
 
 </template>
 
@@ -39,26 +43,15 @@ export default {
 </script>
 
 <style>
-    #blogPost {
-        margin: 20px 20px;
-        width: 300px;
-        height: 330px;
+    .card {
+        height: 200px;
         background-color: #F4F4F4;
-        padding: 10px;
-        border-radius: 10px;
         box-shadow: 0 2px 3px darkgrey;
-        word-wrap: break-word;
-    }
-
-    .cards{
-
-        transition: all 0.2s ease;
+        transition: all 0.1s ease;
         cursor: pointer;
-
-
     }
 
-    .cards:hover{
+    .card:hover{
 
         box-shadow: 5px 6px 6px 2px #e9ecef;
         transform: scale(1.1);

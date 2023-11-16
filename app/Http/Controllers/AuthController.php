@@ -48,14 +48,40 @@ class AuthController extends Controller
         auth()->logout();
         return response(["message"=>"logged out"]);
     }
+    public function authenticatedCheck(){
+        // Get the authenticated user
+        $user = Auth::user();
 
-    public function authenticatedCheck()
-    {
-        dd(auth()->user()->tokens());
-        if (auth()->user() === null){
-            auth()->logout();
-            return response()->json(["message" => "user logged out"], 401);
+// Check if the user has a token
+        if ($user->token()) {
+            // Get the expiration timestamp of the token
+            $tokenExpiration = $user->token()->expires_at;
+
+            // Compare with the current time
+            if (now()->gt($tokenExpiration)) {
+                // Token is expired
+                echo "Token has expired.";
+            } else {
+                // Token is still valid
+                echo "Token is still valid.";
+            }
+        } else {
+            // User doesn't have a token
+            echo "User doesn't have a token.";
         }
-        return response(["message"=>"still logged in"]);
     }
+
+//    public function authenticatedCheck()
+//    {
+//        dd(auth()->user()->tokens());
+//        if (auth()->user() === null){
+//            auth()->logout();
+//            return response()->json(["message" => "user logged out"], 401);
+//        }
+//        return response(["message"=>"still logged in"]);
+//    }
+
 }
+
+
+
