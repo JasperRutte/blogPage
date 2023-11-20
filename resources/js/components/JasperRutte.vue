@@ -7,13 +7,13 @@
         </div>
 
             <h2>Most recent Blogs.</h2>
+
         <div class="row" >
             <div v-for="(blog, index) in recentPosts" :key="blog" class="col-md-3 mb-2" @click="this.$router.push('/ViewBlog/' + blog.id)">
                 <div class="card card-body">
                     <h2>{{blog.title}}</h2>
                     <p>{{blog.body}}</p>
                 </div>
-
             </div>
             <router-link class="nav-item nav-link" to="/blog">See more.</router-link>
         </div>

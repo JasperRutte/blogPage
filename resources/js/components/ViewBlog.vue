@@ -1,8 +1,11 @@
 <template>
-    <div id="container">
-        <h1>{{blogPost.title}}</h1><br>
-        <p>{{blogPost.body}}</p><br>
-        <button class="btn btn-danger" @click="removeBlog" v-if="user">Delete</button>
+    <div class="container">
+        <div>
+            <h1>{{blogPost.title}}</h1><br>
+            <p>{{blogPost.body}}</p><br>
+            <button class="btn btn-danger" @click="removeBlog" v-if="user">Delete</button>
+        </div>
+
     </div>
 
 </template>
@@ -50,13 +53,3 @@ export default {
 
 </script>
 
-<style>
-#blogCard {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #F4F4F4;
-    box-shadow: 0 2px 3px darkgrey;
-}
-</style>

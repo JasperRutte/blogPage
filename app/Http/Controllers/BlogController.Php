@@ -19,7 +19,7 @@ class BlogController extends Controller
 
 
     public function create(Request $request){
-        if (!auth()->user()) {
+        if (!auth()->user()-token()) {
             return response()->json(['message' => 'User not logged in'],401);
         }
 

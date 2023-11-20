@@ -32,20 +32,25 @@ export default {
             .then(response => {
                 localStorage.setItem('userData', JSON.stringify(response.data))
                 console.log('test',  JSON.parse(localStorage.getItem('userData')));
-                // console.log(response);
+                console.log(response);
             })
             .catch(error => {
                 console.log(error);
+                if (localStorage.getItem("token")) {
+                    axios.defaults.headers.common = null
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userData');
+                }
             })
-
-        axios.post('/api/authCheck')
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-                this.$router.push("/Account")
-            })
+    //
+    //     axios.post('/api/authCheck')
+    //         .then(response => {
+    //             console.log(response)
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //             this.$router.push("/Account")
+    //         })
     },
 }
 </script>
@@ -56,19 +61,4 @@ body {
     background-color: #FFFFFF;
 }
 
-#container-center {
-    margin: 50px auto auto;
-    width: 1500px;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#container {
-    margin: 50px auto auto;
-    width: 50%;
-    background-color: #F4F4F4;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 3px darkgrey;
-}
 </style>
