@@ -4,6 +4,7 @@
             <h1>{{blogPost.title}}</h1><br>
             <p>{{blogPost.body}}</p><br>
             <button class="btn btn-danger" @click="removeBlog" v-if="user">Delete</button>
+            <button class="btn btn-secondary" @click="this.$router.push('/EditBlog/' + blogPost.id)" v-if="user">edit</button>
         </div>
 
     </div>

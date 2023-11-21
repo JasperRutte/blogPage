@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\BlogPost;
+use App\Models\Links;
 use http\Env\Response;
 use Illuminate\Http\Request;
-use App\Models\Platenmaatschappijen;
 use function Laravel\Prompts\alert;
 
-class BlogController extends Controller
+class LinkController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
 
-        $blogPost = BlogPost::all();
-        return $blogPost;
+        $links = Links::all();
+        return $links;
     }
 
 
@@ -27,17 +28,17 @@ class BlogController extends Controller
             'contents'=>'required'
         ]);
 
-        $newBlogPost = new BlogPost;
-        $newBlogPost->title = $validated['title'];
-        $newBlogPost->body = $validated['contents'];
+        $newLink = new Links;
+        $newLink->links = $validated['title'];
+        $newLink->body = $validated['contents'];
 
-        $newBlogPost->save();
+        $newLink->save();
     }
 
     public function show($id) {
-        $specificBlogPost = BlogPost::find($id);
+        $specificLink = Links::find($id);
 //        dd($specificBlogPost);
-        return ["blog"=>$specificBlogPost];
+        return ["link"=>$specificLink];
     }
 
     public function delete($id){
@@ -45,8 +46,8 @@ class BlogController extends Controller
             return response()->json(['message' => 'User not logged in'],401);
         }
 
-        $deletedBlog = BlogPost::find($id);
-        $deletedBlog->delete();
+        $deletedLink = Links::find($id);
+        $deletedLink->delete();
     }
 
 

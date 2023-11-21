@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use \App\Http\Controllers\BlogController;
+use \App\Http\Controllers\LinkController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -36,9 +37,12 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/test', [AuthController::class, 'test']);
 Route::post('/authCheck',[AuthController::class, 'authenticatedCheck']);
 
-Route::post('/create', [BlogController::class, 'create']);
+//blogs
+Route::post('/create/blog', [BlogController::class, 'create']);
 Route::delete('delete/{id}', [BlogController::class, 'delete']);
-Route::get('/index', [BlogController::class, 'index']);
+Route::get('/index/blogs', [BlogController::class, 'index']);
 Route::get('/show/{id}',[BlogController::class, 'show']);
 
-
+//links
+Route::post('/create/link', [LinkController::class, 'create']);
+Route::get('/index/link',[LinkController::class, 'index']);

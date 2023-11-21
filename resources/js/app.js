@@ -5,16 +5,25 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // import components
 import App from "./components/App.vue";
-import Blog from "./components/Blog.vue";
-import Links from "./components/Links.vue";
-import Account from "./components/Account.vue";
-import CreateBlog from "./components/CreateBlog.vue"
-import ViewBlog from "./components/ViewBlog.vue";
 import JasperRutte from "./components/JasperRutte.vue";
+import Account from "./components/Account.vue";
+
+import Links from "./components/links/Link.vue";
+import createLink from "./components/links/CreateLink.vue";
+
+import Blog from "./components/blogs/Blog.vue";
+import CreateBlog from "./components/blogs/CreateBlog.vue"
+import ViewBlog from "./components/blogs/ViewBlog.vue";
+import EditBlog from "./components/blogs/EditBlog.vue";
+
 import axios from "axios";
 
 // route components
 const routes = [
+    {
+        path: "/JasperRutte",
+        component: JasperRutte
+    },
     {
         path: "/app",
         component: App
@@ -28,6 +37,11 @@ const routes = [
         component: Links
     },
     {
+        path: "/CreateLinks",
+        component: createLink
+    },
+
+    {
         path: "/account",
         component: Account
     },
@@ -40,8 +54,8 @@ const routes = [
         component: ViewBlog
     },
     {
-        path: "/JasperRutte",
-        component: JasperRutte
+        path: "/EditBlog/:id",
+        component: EditBlog
     },
 ];
 
@@ -76,7 +90,9 @@ const app = createApp({
         Links,
         Account,
         CreateBlog,
+        createLink,
         ViewBlog,
+        EditBlog,
         JasperRutte
     }
 });

@@ -40,7 +40,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/index')
+        axios.get('/api/index/blogs')
             .then(response => {
                 this.blogPosts = response.data
             })

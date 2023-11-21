@@ -15,7 +15,6 @@
             <div class="p-2 col-sm-5 col-xl-3" v-if="user" @click="this.$router.push('/CreateBlog')">
                 <div class="card card-body">
                     <h2 class="text-center">+</h2>
-
                 </div>
             </div>
         </div>
@@ -37,7 +36,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/index')
+        axios.get('/api/index/blogs')
             .then(response => {
                 this.blogPosts = response.data
             })
