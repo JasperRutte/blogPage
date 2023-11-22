@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArtistInfo;
 use App\Models\BlogPost;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -49,5 +50,18 @@ class BlogController extends Controller
         $deletedBlog->delete();
     }
 
+    public function update(Request $request)
+    {
+//        dd($request);
+        $validated = $request->validate([
+            'title'=>'required',
+            'body'=>'required'
+        ]);
+
+        $updatedBlog = BlogPost::where("id", $request->id)->first();
+        $updatedBlog->title = $request->title;
+        $updatedBlog->body = $request->body;
+        $updatedBlog->save();
+    }
 
 };

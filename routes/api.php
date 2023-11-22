@@ -31,7 +31,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/test', [AuthController::class, 'test']);
@@ -39,9 +38,11 @@ Route::post('/authCheck',[AuthController::class, 'authenticatedCheck']);
 
 //blogs
 Route::post('/create/blog', [BlogController::class, 'create']);
-Route::delete('delete/{id}', [BlogController::class, 'delete']);
+Route::put('/update/blog/{id}', [BlogController::class, 'update']);
+Route::delete('/delete/{id}', [BlogController::class, 'delete']);
 Route::get('/index/blogs', [BlogController::class, 'index']);
 Route::get('/show/{id}',[BlogController::class, 'show']);
+
 
 //links
 Route::post('/create/link', [LinkController::class, 'create']);
