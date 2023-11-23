@@ -6,7 +6,6 @@
             <button class="btn btn-danger" @click="removeBlog" v-if="user">Delete</button>
             <button class="btn btn-secondary" @click="this.$router.push('/EditBlog/' + blogPost.id)" v-if="user">edit</button>
         </div>
-
     </div>
 
 </template>
@@ -23,7 +22,7 @@ export default {
         }
     },
    mounted() {
-       axios.get(`/api/show/`+this.$route.params.id)
+       axios.get(`/api/show/`+this.$route.params.id+`/blog`)
            .then(response => {
                this.blogPost = response.data.blog;
                this.hasLoaded = true
@@ -36,7 +35,7 @@ export default {
     methods: {
         removeBlog() {
             if (confirm("Are you sure?")){
-                axios.delete(`/api/delete/${this.$route.params.id}`)
+                axios.delete(`/api/delete/${this.$route.params.id}/blog`)
                     .then(response => {
                         console.log("success");
                         this.$router.push("/Blog");

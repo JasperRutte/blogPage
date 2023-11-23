@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
 
         </div>
-        <h1>Blogs.</h1>
+        <h2>Blogs.</h2>
         <div class="row">
             <div v-for="blog in blogPosts" class="p-2 col-sm-5 col-xl-3 " @click="this.$router.push('/ViewBlog/' + blog.id)">
-                <div class="card card-body text-truncate">
-                    <h2>{{blog.title}}</h2>
-                    <p>{{blog.body}}</p>
+                <div class="card card-body">
+                    <h2  class="col-12 text-truncate">{{blog.title}}</h2>
+                    <p class="col-12 text-truncate"> {{blog.body}}</p>
                 </div>
             </div>
 
@@ -52,7 +52,6 @@ export default {
         box-shadow: 0 2px 3px darkgrey;
         transition: all 0.1s ease;
         cursor: pointer;
-        word-break: break-all;
     }
 
     .card:hover{
@@ -60,7 +59,6 @@ export default {
         transform: scale(1.1);
     }
 
-    .card-body:hover {
 
-    }
+
 </style>

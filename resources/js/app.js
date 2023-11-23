@@ -10,6 +10,10 @@ import Account from "./components/Account.vue";
 
 import Links from "./components/links/Link.vue";
 import createLink from "./components/links/CreateLink.vue";
+import ViewLink from "./components/links/ViewLink.vue";
+import EditLink from "./components/links/EditLink.vue";
+
+
 
 import Blog from "./components/blogs/Blog.vue";
 import CreateBlog from "./components/blogs/CreateBlog.vue"
@@ -29,21 +33,13 @@ const routes = [
         component: App
     },
     {
-        path: "/blog",
-        component: Blog
-    },
-    {
-        path: "/links",
-        component: Links
-    },
-    {
-        path: "/CreateLinks",
-        component: createLink
-    },
-
-    {
         path: "/account",
         component: Account
+    },
+    //blogs
+    {
+        path: "/blog",
+        component: Blog
     },
     {
         path: "/CreateBlog",
@@ -56,6 +52,23 @@ const routes = [
     {
         path: "/EditBlog/:id",
         component: EditBlog
+    },
+    //links
+    {
+        path: "/links",
+        component: Links
+    },
+    {
+        path: "/CreateLinks",
+        component: createLink
+    },
+    {
+        path: "/ViewLink/:id",
+        component: ViewLink
+    },
+    {
+      path: "/EditLink/:id",
+        component: EditLink
     },
 ];
 
@@ -93,7 +106,9 @@ const app = createApp({
         createLink,
         ViewBlog,
         EditBlog,
-        JasperRutte
+        JasperRutte,
+        ViewLink,
+        EditLink
     }
 });
 

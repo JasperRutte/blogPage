@@ -32,12 +32,18 @@ class LinkController extends Controller
         $newLink->links = $validated['title'];
         $newLink->body = $validated['contents'];
 
-        $newLink->save();
+        if (filter_var($newLink->body, FILTER_VALIDATE_URL) === FALSE) {
+            return response()->json(['message' => 'Invalid link'],401);
+        } else {
+            $newLink->save();
+        }
+
     }
 
     public function show($id) {
+//        dd("Test");
+
         $specificLink = Links::find($id);
-//        dd($specificBlogPost);
         return ["link"=>$specificLink];
     }
 
@@ -50,5 +56,18 @@ class LinkController extends Controller
         $deletedLink->delete();
     }
 
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'links'=>'required',
+            'body'=>'required'
+        ]);
+
+
+        $updatedLink = Links::where("id", $request->id)->first();
+        $updatedLink->links = $request->links;
+        $updatedLink->body = $request->body;
+        $updatedLink->save();
+    }
 
 };

@@ -39,11 +39,15 @@ Route::post('/authCheck',[AuthController::class, 'authenticatedCheck']);
 //blogs
 Route::post('/create/blog', [BlogController::class, 'create']);
 Route::put('/update/blog/{id}', [BlogController::class, 'update']);
-Route::delete('/delete/{id}', [BlogController::class, 'delete']);
+Route::delete('/delete/{id}/blog', [BlogController::class, 'delete']);
 Route::get('/index/blogs', [BlogController::class, 'index']);
-Route::get('/show/{id}',[BlogController::class, 'show']);
+Route::get('/show/{id}/blog',[BlogController::class, 'show']);
 
 
 //links
 Route::post('/create/link', [LinkController::class, 'create']);
 Route::get('/index/link',[LinkController::class, 'index']);
+Route::get('/show/{id}/link',[LinkController::class, 'show']);
+Route::delete('/delete/{id}/link', [LinkController::class, 'delete']);
+Route::put('/update/link/{id}', [LinkController::class, 'update']);
+
