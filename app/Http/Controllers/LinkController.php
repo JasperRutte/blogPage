@@ -7,6 +7,7 @@ use App\Models\BlogPost;
 use App\Models\Links;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use function Laravel\Prompts\alert;
 
 class LinkController extends Controller
@@ -23,14 +24,13 @@ class LinkController extends Controller
             return response()->json(['message' => 'User not logged in'],401);
         }
 
-        $validated = $request->validate([
-            'title'=>'required',
-            'contents'=>'required'
-        ]);
+        if (!isset($request->contents) || !isset($request->title) || strlen($request->contents) < 1 || strlen($request->title) < 1) {
+            return response()->json(['message' => 'Fill in all fields'], 401);
+        }
 
-        $newLink = new Links;
-        $newLink->links = $validated['title'];
-        $newLink->body = $validated['contents'];
+        $newLink = new Links();
+        $newLink->links = $request->title;
+        $newLink->body = $request->contents;
 
         if (filter_var($newLink->body, FILTER_VALIDATE_URL) === FALSE) {
             return response()->json(['message' => 'Invalid link'],401);
@@ -58,16 +58,27 @@ class LinkController extends Controller
 
     public function update(Request $request)
     {
-        $validated = $request->validate([
-            'links'=>'required',
-            'body'=>'required'
-        ]);
+        if (!auth()->user()) {
+            return response()->json(['message' => 'User not logged in'],401);
+        }
+
+        if (!isset($request->links) || !isset($request->body)) {
+            return response()->json(['message' => 'Fill in the form correctly'], 401);
+        }
+
 
 
         $updatedLink = Links::where("id", $request->id)->first();
-        $updatedLink->links = $request->links;
         $updatedLink->body = $request->body;
-        $updatedLink->save();
+        $updatedLink->links = $request->links;
+
+
+//        dd($updatedLink->title);
+        if (filter_var($request->body, FILTER_VALIDATE_URL) === FALSE) {
+            return response()->json(['message' => 'Invalid link'],401);
+        } else {
+            $updatedLink->save();
+        }
     }
 
 };

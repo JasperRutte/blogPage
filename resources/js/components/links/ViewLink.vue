@@ -1,10 +1,15 @@
 <template>
-    <div class="container">
-        <div>
-            <h1></h1><br>
+    <div class="container mt-5">
+        <div class="bigCard p-3">
             <a :href="linkPost.body"><h2>{{linkPost.links}}</h2></a><br>
-            <button class="btn btn-danger" @click="removeLink" v-if="user">Delete</button>
-            <button class="btn btn-secondary" @click="this.$router.push('/Editlink/' + linkPost.id)" v-if="user">edit</button>
+            <div class="row">
+                <p class="text-danger col-1" @click="removeLink" v-if="user" style="cursor: pointer">Delete</p>
+                <p class="text-warning col" @click="this.$router.push('/Editlink/' + linkPost.id)" v-if="user" style="cursor: pointer">Edit</p>
+            </div>
+
+
+<!--            <button class="btn btn-danger" @click="removeLink" v-if="user">Delete</button>-->
+<!--            <button class="btn btn-secondary" @click="this.$router.push('/Editlink/' + linkPost.id)" v-if="user">edit</button>-->
         </div>
 
     </div>

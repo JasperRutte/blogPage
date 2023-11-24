@@ -1,22 +1,25 @@
 <template>
-    <div id="container">
-        <div v-if="user">
-            <h1>{{ user.name }}</h1>
-            <p>mail: {{user.email}}</p>
-            <button @click="UserLogout" class="btn btn-danger">Logout</button>
+    <div class="container">
+        <div class="bigCard mt-5 p-3">
+            <div v-if="user">
+                <h1>{{ user.name }}</h1>
+                <p>mail: {{user.email}}</p>
+                <p @click="UserLogout" class="text-danger" style="cursor: pointer">Logout</p>
+            </div>
+
+            <div v-else>
+                <form>
+                    <h1 class="display-6">Login</h1>
+                    <label  for="email">email</label><br>
+                    <input placeholder="johndoe@example.example" v-model="loginDetails.email" class="form-control"><br><br>
+                    <label for="Password">password</label><br>
+                    <input type="password" v-model="loginDetails.password" placeholder="YouShallNotPass" class="form-control"><br>
+                </form>
+                <p class="text-success" @click="userLogin()" style="cursor: pointer">Login</p>
+            </div>
+        </div>
         </div>
 
-        <div v-else>
-            <form>
-                <h1 class="display-6">Login</h1>
-                <label  for="email">email</label><br>
-                <input placeholder="johndoe@example.example" v-model="loginDetails.email" class="form-control"><br><br>
-                <label for="Password">password</label><br>
-                <input type="password" v-model="loginDetails.password" placeholder="YouShallNotPass" class="form-control"><br>
-            </form>
-            <button class="btn btn-primary" @click="userLogin()">Login</button>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -35,7 +38,7 @@ export default {
 
     },
     mounted(){
-
+        console.log(this.user)
     },
 
     methods: {

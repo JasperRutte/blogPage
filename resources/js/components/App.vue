@@ -1,14 +1,15 @@
 <template>
-
-    <nav class="navbar navbar-expand-lg justify-content-between px-5 shadow-lg p-2 rounded sticky-top">
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between px-3 shadow-lg rounded sticky-top mt-3">
         <router-link to="/JasperRutte" class="nav-link"><h2>Jasper Rutte</h2> </router-link>
         <div class="navbar-nav" >
-<!--            <router-link class="nav-item nav-link " to="/">About</router-link>-->
-            <router-link class="nav-item nav-link" to="/blog">Blog</router-link>
-            <router-link class="nav-item nav-link" to="/links">Links</router-link>
-            <router-link class="nav-item nav-link" to="/account">Account</router-link>
+            <router-link class="nav-item nav-link text-white" to="/blog">Blog</router-link>
+            <router-link class="nav-item nav-link text-white" to="/links">Links</router-link>
+            <router-link class="nav-item nav-link text-white" to="/account">Account</router-link>
         </div>
     </nav>
+</div>
+
 
 
 
@@ -42,23 +43,35 @@ export default {
                     localStorage.removeItem('userData');
                 }
             })
-    //
-    //     axios.post('/api/authCheck')
-    //         .then(response => {
-    //             console.log(response)
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //             this.$router.push("/Account")
-    //         })
     },
 }
 </script>
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
 body {
-    background-color: #FFFFFF;
+    color: #F4F4F4;
+    background-color: #161C1C;
+    font-family: 'Ubuntu Mono', monospace
+}
+
+p {
+    font-size: larger;
+}
+
+nav {
+    background-color: #313131;
+    box-shadow: 0 2px 3px black;
+}
+
+.bigCard {
+    background-color: #313131;
+    border: #313131;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px black;
+
 }
 
 </style>

@@ -1,13 +1,20 @@
 <template>
     <div class="container mt-5">
-        <h2>Edit blog</h2>
-        <form>
-            <input v-model="blogPost.title" class="form-control"><br>
-            <textarea v-model="blogPost.body" class="form-control"></textarea>
+        <h2>Edit blog.</h2>
+        <div class="bigCard rounded p-3">
+            <form>
+                <label>Title</label>
+                <input v-model="blogPost.title" class="form-control"><br>
+                <label>contetns</label>
+                <textarea v-model="blogPost.body" class="form-control"></textarea>
 
 
-        </form>
-        <button @click="updateBlog" class="btn btn-primary">Update</button>
+            </form>
+            <p @click="updateBlog" class="text-primary mt-4" style="cursor: pointer">Update</p>
+        </div>
+        <div class="alert alert-danger" role="alert" v-if="error">
+            <p>Please fill in the form correctly.</p>
+        </div>
     </div>
 </template>
 <script>
@@ -17,6 +24,7 @@ export default {
     data(){
         return {
             blogPost: [],
+            error: false,
         }
     },
 
@@ -40,6 +48,7 @@ export default {
                         this.$router.push("/blog");
                     })
                     .catch(error => {
+                        this.error = true
                         console.log("failed", error)
                     })
             } else {

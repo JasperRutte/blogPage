@@ -11,39 +11,43 @@ use function Laravel\Prompts\alert;
 
 class BlogController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         $blogPost = BlogPost::all();
         return $blogPost;
     }
 
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         if (!auth()->user()) {
-            return response()->json(['message' => 'User not logged in'],401);
+            return response()->json(['message' => 'User not logged in'], 401);
         }
 
-        $validated = $request->validate([
-            'title'=>'required',
-            'contents'=>'required'
-        ]);
+        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->contents) < 10) {
+            return response()->json(['message' => 'Fill in all fields'], 401);
+        }
+
 
         $newBlogPost = new BlogPost;
-        $newBlogPost->title = $validated['title'];
-        $newBlogPost->body = $validated['contents'];
+        $newBlogPost->title = $request->title;
+        $newBlogPost->body = $request->contents;
 
         $newBlogPost->save();
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $specificBlogPost = BlogPost::find($id);
 //        dd($specificBlogPost);
-        return ["blog"=>$specificBlogPost];
+        return ["blog" => $specificBlogPost];
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         if (!auth()->user()) {
-            return response()->json(['message' => 'User not logged in'],401);
+            return response()->json(['message' => 'User not logged in'], 401);
         }
 
         $deletedBlog = BlogPost::find($id);
@@ -52,16 +56,16 @@ class BlogController extends Controller
 
     public function update(Request $request)
     {
-//        dd($request);
-        $validated = $request->validate([
-            'title'=>'required',
-            'body'=>'required'
-        ]);
+        if (!isset($request->title) || !isset($request->body) || strlen($request->title) < 3 || strlen($request->body) < 10) {
+            return response()->json(['message' => 'Fill in all fields'], 401);
+        }
+
 
         $updatedBlog = BlogPost::where("id", $request->id)->first();
         $updatedBlog->title = $request->title;
         $updatedBlog->body = $request->body;
-        $updatedBlog->save();
-    }
 
-};
+        $updatedBlog->save();
+
+    }
+}
