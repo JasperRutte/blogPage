@@ -54,7 +54,7 @@ export default {
 body {
     color: #F4F4F4;
     background-color: #161C1C;
-    font-family: 'Ubuntu Mono', monospace
+    font-family: Roboto,serif;
 }
 
 p {

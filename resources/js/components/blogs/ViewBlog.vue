@@ -1,15 +1,12 @@
 <template>
     <div class="container">
-        <div class="bigCard mt-5 p-3">
+        <div class="bigCard mt-5 p-3" style=" word-wrap: break-word;">
             <h1>{{blogPost.title}}</h1><br>
             <p>{{blogPost.body}}</p><br>
             <div class="row">
                 <p class="text-danger col-1" @click="removeBlog" v-if="user" style="cursor: pointer">Delete</p>
                 <p class="text-warning col" @click="this.$router.push('/EditBlog/' + blogPost.id)" v-if="user" style="cursor: pointer">Edit</p>
             </div>
-
-<!--            <button class="btn btn-danger" @click="removeBlog" v-if="user">Delete</button>-->
-<!--            <button class="btn btn-secondary" @click="this.$router.push('/EditBlog/' + blogPost.id)" v-if="user">edit</button>-->
         </div>
     </div>
 

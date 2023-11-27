@@ -7,7 +7,7 @@
         <div class="row">
             <div v-for="blog in blogPosts" class="p-2 col-sm-5 col-xl-3 " @click="this.$router.push('/ViewBlog/' + blog.id)">
                 <div class="card card-body">
-                    <h2  class="col-12 text-truncate">{{blog.title}}</h2>
+                    <h2 class="col-12 text-truncate">{{blog.title}}</h2>
                     <p class="col-12 text-truncate"> {{blog.body}}</p>
                 </div>
             </div>

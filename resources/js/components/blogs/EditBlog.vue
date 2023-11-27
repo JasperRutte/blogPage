@@ -5,7 +5,7 @@
             <form>
                 <label>Title</label>
                 <input v-model="blogPost.title" class="form-control"><br>
-                <label>contetns</label>
+                <label>contents</label>
                 <textarea v-model="blogPost.body" class="form-control"></textarea>
 
 

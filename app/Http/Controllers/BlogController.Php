@@ -25,7 +25,7 @@ class BlogController extends Controller
             return response()->json(['message' => 'User not logged in'], 401);
         }
 
-        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->contents) < 10) {
+        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->title) > 25 || strlen($request->contents) < 10) {
             return response()->json(['message' => 'Fill in all fields'], 401);
         }
 
