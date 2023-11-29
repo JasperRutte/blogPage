@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <div class="bigCard p-3">
-            <a :href="linkPost.body"><h2>{{linkPost.links}}</h2></a><br>
+            <a :href="linkPost.contents"><h2>{{linkPost.title}}</h2></a><br>
             <div class="row">
                 <p class="text-danger col-1" @click="removeLink" v-if="user" style="cursor: pointer">Delete</p>
                 <p class="text-warning col" @click="this.$router.push('/Editlink/' + linkPost.id)" v-if="user" style="cursor: pointer">Edit</p>
@@ -25,11 +25,12 @@ export default {
     },
     mounted() {
 
-        axios.get(`/api/show/`+this.$route.params.id+`/link`)
+        axios.get(`/api/link/`+this.$route.params.id)
             .then(response => {
                 this.linkPost = response.data.link;
                 // this.hasLoaded = true
-                console.log(this.linkPost.link, 'test')
+                console.log(response.data, 'test')
+                console.log(response.data.link)
             })
             .catch(error => {
                 console.error(error);
@@ -38,7 +39,7 @@ export default {
     methods: {
         removeLink() {
             if (confirm("Are you sure?")){
-                axios.delete(`/api/delete/`+this.$route.params.id+`/link`)
+                axios.delete(`/api/link/`+this.$route.params.id+`/delete`)
                     .then(response => {
                         console.log("success");
                         this.$router.push("/links");

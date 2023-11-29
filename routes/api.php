@@ -37,17 +37,17 @@ Route::get('/test', [AuthController::class, 'test']);
 Route::post('/authCheck',[AuthController::class, 'authenticatedCheck']);
 
 //blogs
-Route::post('/create/blog', [BlogController::class, 'create']);
-Route::put('/update/blog/{id}', [BlogController::class, 'update']);
-Route::delete('/delete/{id}/blog', [BlogController::class, 'delete']);
-Route::get('/index/blogs', [BlogController::class, 'index']);
-Route::get('/show/{id}/blog',[BlogController::class, 'show']);
+Route::post('/blog/create', [BlogController::class, 'create']);
+Route::put('/blog/{id}/update', [BlogController::class, 'update']);
+Route::delete('/blog/{id}/delete', [BlogController::class, 'delete']);
+Route::get('/blogs', [BlogController::class, 'index']);
+Route::get('/blog/{id}',[BlogController::class, 'show']);
 
 
 //links
-Route::post('/create/link', [LinkController::class, 'create']);
-Route::get('/index/link',[LinkController::class, 'index']);
-Route::get('/show/{id}/link',[LinkController::class, 'show']);
-Route::delete('/delete/{id}/link', [LinkController::class, 'delete']);
-Route::put('/update/link/{id}', [LinkController::class, 'update']);
+Route::post('/link/create', [LinkController::class, 'create']);
+Route::get('/links',[LinkController::class, 'index']);
+Route::get('/link/{id}',[LinkController::class, 'show']);
+Route::delete('/link/{id}/delete', [LinkController::class, 'delete']);
+Route::put('/link/{id}/update', [LinkController::class, 'update']);
 

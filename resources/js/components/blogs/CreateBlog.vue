@@ -23,7 +23,9 @@ export default {
         return {
             blogData: {
                 title: "",
-                contents: ""
+                contents: "",
+                user_id: ""
+
             },
             blogPosts: [],
             error: false,
@@ -32,7 +34,7 @@ export default {
 
     methods: {
         createBlog() {
-            axios.post('/api/create/blog', this.blogData)
+            axios.post('/api/blog/create', this.blogData)
                 .then(response => {
                     console.log("works")
                     console.log(response)
@@ -44,6 +46,9 @@ export default {
                     console.log(error)
                 })
         }
+    },
+    mounted() {
+      this.blogData.user_id = this.user.id
     }
 }
 

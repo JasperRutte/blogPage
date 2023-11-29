@@ -2,7 +2,7 @@
     <div class="container">
         <div class="bigCard mt-5 p-3" style=" word-wrap: break-word;">
             <h1>{{blogPost.title}}</h1><br>
-            <p>{{blogPost.body}}</p><br>
+            <p>{{blogPost.contents}}</p><br>
             <div class="row">
                 <p class="text-danger col-1" @click="removeBlog" v-if="user" style="cursor: pointer">Delete</p>
                 <p class="text-warning col" @click="this.$router.push('/EditBlog/' + blogPost.id)" v-if="user" style="cursor: pointer">Edit</p>
@@ -24,7 +24,7 @@ export default {
         }
     },
    mounted() {
-       axios.get(`/api/show/`+this.$route.params.id+`/blog`)
+       axios.get(`/api/blog/` + this.$route.params.id)
            .then(response => {
                this.blogPost = response.data.blog;
                this.hasLoaded = true
@@ -37,7 +37,7 @@ export default {
     methods: {
         removeBlog() {
             if (confirm("Are you sure?")){
-                axios.delete(`/api/delete/${this.$route.params.id}/blog`)
+                axios.delete(`/api/blog/${this.$route.params.id}/delete`)
                     .then(response => {
                         console.log("success");
                         this.$router.push("/Blog");

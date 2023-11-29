@@ -3,8 +3,8 @@
         <h2>Edit link.</h2>
         <div class="bigCard p-3">
             <form>
-                <input v-model="linkPost.links" class="form-control"><br>
-                <textarea v-model="linkPost.body" class="form-control"></textarea>
+                <input v-model="linkPost.title" class="form-control"><br>
+                <textarea v-model="linkPost.contents" class="form-control"></textarea>
 
 
             </form>
@@ -29,10 +29,12 @@ export default {
     },
 
     mounted() {
-        axios.get(`/api/show/`+this.$route.params.id + `/link`)
+        axios.get(`/api/link/`+this.$route.params.id)
             .then(response => {
                 this.linkPost = response.data.link;
-                console.log(this.blogPost)
+                // this.hasLoaded = true
+                console.log(response.data, 'test')
+                console.log(response.data.link)
             })
             .catch(error => {
                 console.error(error);
@@ -41,7 +43,7 @@ export default {
 
     methods: {
         updateLink(){
-            axios.put(`/api/update/link/${this.$route.params.id}`, this.linkPost)
+            axios.put(`/api/link/`+this.$route.params.id+`/update`, this.linkPost)
                 .then(response => {
                     console.log("success", response)
                     this.$router.push("/links");
@@ -51,9 +53,6 @@ export default {
                     console.log("failed", error)
                 })
         },
-        test(){
-            console.log(this.updateLink)
-        }
     }
 }
 

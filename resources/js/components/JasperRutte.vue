@@ -12,7 +12,7 @@
                 <div v-for="(blog, index) in recentBlogPosts" :key="blog" class="col-md-3 mb-2" @click="this.$router.push('/ViewBlog/' + blog.id)">
                     <div class="card card-body">
                         <h2 class="col-12 mb-4 text-truncate">{{blog.title}}</h2>
-                        <p class="col-12 text-truncate"> {{blog.body}}</p>
+                        <p class="col-12 text-truncate"> {{blog.contents}}</p>
                     </div>
                 </div>
                 <router-link class="nav-item nav-link" to="/blog">See more.</router-link>
@@ -28,8 +28,8 @@
             <div class="row" v-if="LinkPosts.length !== 0" >
                 <div v-for="(link, index) in recentLinkPosts" :key="link" class="col-md-3 mb-2" @click="this.$router.push('/ViewLink/' + link.id)">
                     <div class="card card-body">
-                        <h2 class="col-12 text-truncate">{{link.links}}</h2>
-                        <a class="col-12 text-truncate">{{link.body}}</a>
+                        <h2 class="col-12 text-truncate">{{link.title}}</h2>
+                        <a class="col-12 text-truncate">{{link.contents}}</a>
                     </div>
                 </div>
                 <router-link class="nav-item nav-link" to="/Links">See more.</router-link>
@@ -63,12 +63,12 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/index/blogs')
+        axios.get('/api/blogs')
             .then(response => {
                 this.blogPosts = response.data
             })
 
-        axios.get('/api/index/link')
+        axios.get('/api/links')
             .then(response => {
                 this.LinkPosts = response.data
             })

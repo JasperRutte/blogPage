@@ -6,10 +6,9 @@
                 <label>Title</label>
                 <input v-model="blogPost.title" class="form-control"><br>
                 <label>contents</label>
-                <textarea v-model="blogPost.body" class="form-control"></textarea>
-
-
+                <textarea v-model="blogPost.contents" class="form-control"></textarea>
             </form>
+
             <p @click="updateBlog" class="text-primary mt-4" style="cursor: pointer">Update</p>
         </div>
         <div class="alert alert-danger" role="alert" v-if="error">
@@ -29,7 +28,7 @@ export default {
     },
 
     mounted() {
-        axios.get(`/api/show/`+this.$route.params.id+`/blog`)
+        axios.get(`/api/blog/`+this.$route.params.id)
             .then(response => {
                 this.blogPost = response.data.blog;
                 console.log(this.blogPost)
@@ -42,7 +41,7 @@ export default {
     methods: {
         updateBlog(){
             if (confirm("Are you sure?")) {
-                axios.put(`/api/update/blog/${this.$route.params.id}`, this.blogPost)
+                axios.put(`/api/blog/${this.$route.params.id}/update`, this.blogPost)
                     .then(response => {
                         console.log("success", response)
                         this.$router.push("/blog");

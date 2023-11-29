@@ -8,7 +8,8 @@
             <div v-for="blog in blogPosts" class="p-2 col-sm-5 col-xl-3 " @click="this.$router.push('/ViewBlog/' + blog.id)">
                 <div class="card card-body">
                     <h2 class="col-12 text-truncate">{{blog.title}}</h2>
-                    <p class="col-12 text-truncate"> {{blog.body}}</p>
+                    <p class="col-12 text-truncate"> {{blog.contents}}</p>
+                    <p>{{}}</p>
                 </div>
             </div>
 
@@ -36,7 +37,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/index/blogs')
+        axios.get('/api/blogs')
             .then(response => {
                 this.blogPosts = response.data
             })

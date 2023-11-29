@@ -30,8 +30,8 @@ export default {
         return {
             loggedIn: false,
             loginDetails: {
-                email: "bins.chaya@example.net",
-                password: "test123",
+                email: "jkunde@example.com",
+                password: "test",
                 loadPage: false,
             },
         }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArtistInfo;
-use App\Models\BlogPost;
+use App\Models\Blog;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Platenmaatschappijen;
@@ -13,8 +13,7 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-
-        $blogPost = BlogPost::all();
+        $blogPost = Blog::all();
         return $blogPost;
     }
 
@@ -25,21 +24,36 @@ class BlogController extends Controller
             return response()->json(['message' => 'User not logged in'], 401);
         }
 
+//        dd($request->title);
         if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->title) > 25 || strlen($request->contents) < 10) {
             return response()->json(['message' => 'Fill in all fields'], 401);
         }
 
+//        if (!isset($request->title) || !isset($request->contents)) {
+//            return response()->json(['message' => 'Fill in all fields'], 401);
+//        }
+//        elseif (strlen($request->title) < 3) {
+//            return response()->json(['message' => "title too short"], 401);
+//        }
+//        elseif ( strlen($request->title) > 25){
+//            return response()->json(['message'=>"title too long"], 401);
+//        }
+//        elseif (strlen($request->contents) < 10) {
+//            return response()->json(['message'=>"contents too short"]);
+//        }
 
-        $newBlogPost = new BlogPost;
+
+
+        $newBlogPost = new Blog;
         $newBlogPost->title = $request->title;
-        $newBlogPost->body = $request->contents;
-
+        $newBlogPost->contents = $request->contents;
+        $newBlogPost->user_id = $request->user_id;
         $newBlogPost->save();
     }
 
     public function show($id)
     {
-        $specificBlogPost = BlogPost::find($id);
+        $specificBlogPost = Blog::find($id);
 //        dd($specificBlogPost);
         return ["blog" => $specificBlogPost];
     }
@@ -50,20 +64,20 @@ class BlogController extends Controller
             return response()->json(['message' => 'User not logged in'], 401);
         }
 
-        $deletedBlog = BlogPost::find($id);
+        $deletedBlog = Blog::find($id);
         $deletedBlog->delete();
     }
 
     public function update(Request $request)
     {
-        if (!isset($request->title) || !isset($request->body) || strlen($request->title) < 3 || strlen($request->body) < 10) {
+        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->contents) < 10) {
             return response()->json(['message' => 'Fill in all fields'], 401);
         }
 
 
-        $updatedBlog = BlogPost::where("id", $request->id)->first();
+        $updatedBlog = Blog::where("id", $request->id)->first();
         $updatedBlog->title = $request->title;
-        $updatedBlog->body = $request->body;
+        $updatedBlog->contents = $request->contents;
 
         $updatedBlog->save();
 
