@@ -29,7 +29,7 @@ export default {
     },
 
     mounted() {
-        axios.get(`/api/link/`+this.$route.params.id)
+        axios.get(`/api/link/${this.$route.params.id}`)
             .then(response => {
                 this.linkPost = response.data.link;
                 // this.hasLoaded = true
@@ -43,7 +43,7 @@ export default {
 
     methods: {
         updateLink(){
-            axios.put(`/api/link/`+this.$route.params.id+`/update`, this.linkPost)
+            axios.put(`/api/link/${this.$route.params.id}/update`, this.linkPost)
                 .then(response => {
                     console.log("success", response)
                     this.$router.push("/links");

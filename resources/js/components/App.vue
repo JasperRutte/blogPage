@@ -32,15 +32,15 @@ export default {
         axios.get('api/user')
             .then(response => {
                 localStorage.setItem('userData', JSON.stringify(response.data))
-                console.log('test',  JSON.parse(localStorage.getItem('userData')));
+                console.log('success',  JSON.parse(localStorage.getItem('userData')));
                 console.log(response);
             })
             .catch(error => {
                 console.log(error);
                 if (localStorage.getItem("token")) {
-                    axios.defaults.headers.common = null
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('userData');
+                    // axios.defaults.headers.common = null
+                    // localStorage.removeItem('token');
+                    // localStorage.removeItem('userData');
                 }
             })
     },

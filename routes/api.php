@@ -26,10 +26,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use \App\Http\Controllers\BlogController;
 use \App\Http\Controllers\LinkController;
+use \App\Http\Controllers\Controller;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('/blog/create', [BlogController::class, 'create']);
+    Route::put('/blog/{id}/update', [BlogController::class, 'update']);
+    Route::delete('/blog/{id}/delete', [BlogController::class, 'delete']);
+
+    Route::post('/link/create', [LinkController::class, 'create']);
+    Route::delete('/link/{id}/delete', [LinkController::class, 'delete']);
+    Route::put('/link/{id}/update', [LinkController::class, 'update']);
+});
+
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
@@ -37,17 +49,20 @@ Route::get('/test', [AuthController::class, 'test']);
 Route::post('/authCheck',[AuthController::class, 'authenticatedCheck']);
 
 //blogs
-Route::post('/blog/create', [BlogController::class, 'create']);
-Route::put('/blog/{id}/update', [BlogController::class, 'update']);
-Route::delete('/blog/{id}/delete', [BlogController::class, 'delete']);
 Route::get('/blogs', [BlogController::class, 'index']);
 Route::get('/blog/{id}',[BlogController::class, 'show']);
+//Route::post('/blog/create', [BlogController::class, 'create']);
+//Route::put('/blog/{id}/update', [BlogController::class, 'update']);
+//Route::delete('/blog/{id}/delete', [BlogController::class, 'delete']);
 
 
 //links
-Route::post('/link/create', [LinkController::class, 'create']);
 Route::get('/links',[LinkController::class, 'index']);
 Route::get('/link/{id}',[LinkController::class, 'show']);
-Route::delete('/link/{id}/delete', [LinkController::class, 'delete']);
-Route::put('/link/{id}/update', [LinkController::class, 'update']);
+//Route::post('/link/create', [LinkController::class, 'create']);
+//Route::delete('/link/{id}/delete', [LinkController::class, 'delete']);
+//Route::put('/link/{id}/update', [LinkController::class, 'update']);
+
+//user
+Route::get('/getUser/{id}', [Controller::class, 'getUserById']);
 

@@ -19,7 +19,6 @@
 
 <script>
 import axios from "axios";
-// import {userMixin} from "@/app.js";
 export default {
     data() {
         return {
@@ -35,17 +34,16 @@ export default {
 
     methods: {
         createBlog() {
-            axios.post('/api/link/create', this.linksData) // Route still needs to be made
+            axios.post('/api/link/create', this.linksData)
                 .then(response => {
-                    console.log("works");
-                    console.log(response);
+                    console.log("success",response);
                     this.$router.push("/links");
                 })
                 .catch(error => {
                     this.error = true;
-                    console.log("error");
-                    console.log(error);
+                    console.log("error", error);
                 })
+
         }
     },
     mounted() {

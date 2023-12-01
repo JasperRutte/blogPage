@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -13,4 +14,11 @@ class Controller extends BaseController
     {
         return view("welcome");
     }
+
+    public function getUserById($id){
+        $specificUser = User::find($id);
+        return ["user" => $specificUser];
+    }
+
+
 }

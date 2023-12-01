@@ -49,16 +49,16 @@ export default {
     data() {
         return {
             blogPosts: [],
-            LinkPosts: [],
+            LinkPosts: []
         }
     },
 
     computed: {
         recentBlogPosts() {
-            return this.blogPosts.slice(-4)
+            return this.blogPosts.slice(-4).reverse()
         },
         recentLinkPosts() {
-            return this.LinkPosts.slice(-4)
+            return this.LinkPosts.slice(-4).reverse()
         }
     },
 

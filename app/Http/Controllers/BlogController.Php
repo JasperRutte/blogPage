@@ -20,9 +20,9 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
-        if (!auth()->user()) {
-            return response()->json(['message' => 'User not logged in'], 401);
-        }
+//        if (!auth()->user()) {
+//            return response()->json(['message' => 'User not logged in'], 401);
+//        }
 
 //        dd($request->title);
         if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->title) > 25 || strlen($request->contents) < 10) {

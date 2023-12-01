@@ -50,13 +50,8 @@ export default {
                         this.error = true
                         console.log("failed", error)
                     })
-            } else {
-                console.log("failed")
             }
         },
-        test(){
-            console.log(this.blogPost)
-        }
     }
 }
 

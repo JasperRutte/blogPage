@@ -38,7 +38,6 @@ export default {
 
     },
     mounted(){
-        console.log(this.user)
     },
 
     methods: {
@@ -50,8 +49,6 @@ export default {
                     localStorage.setItem('token', token);
                     axios.get('/api/user')
                         .then(userResponse => {
-                            console.log(userResponse)
-                            console.log(response)
                             localStorage.setItem('userData', JSON.stringify(userResponse.data));
                             location.reload()
                         })
@@ -80,3 +77,5 @@ export default {
 }
 
 </script>
+
+<!--userData:""<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\"\n          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <script type=\"module\" src=\"http://127.0.0.1:5173/@vite/client\"></script><script type=\"module\" src=\"http://127.0.0.1:5173/resources/js/app.js\"></script></head>\n<body>\n    <div id=\"app\">\n        <App />\n    </div>\n</body>\n</html>\n""-->

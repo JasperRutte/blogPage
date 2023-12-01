@@ -36,6 +36,7 @@ const routes = [
         path: "/account",
         component: Account
     },
+
     //blogs
     {
         path: "/blog",
@@ -53,6 +54,7 @@ const routes = [
         path: "/EditBlog/:id",
         component: EditBlog
     },
+
     //links
     {
         path: "/links",
@@ -72,12 +74,6 @@ const routes = [
     },
 ];
 
-// vue mixin
-// computed: {
-//     user() {
-//         return localStorage.getItem("userData")
-//     }
-//
 
 export const userMixin = {
     computed: {

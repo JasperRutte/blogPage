@@ -36,14 +36,12 @@ export default {
         createBlog() {
             axios.post('/api/blog/create', this.blogData)
                 .then(response => {
-                    console.log("works")
-                    console.log(response)
+                    console.log("success", response)
                     this.$router.push("/Blog");
                 })
                 .catch(error =>{
                     this.error = true
-                    console.log("error")
-                    console.log(error)
+                    console.log("error", error)
                 })
         }
     },
