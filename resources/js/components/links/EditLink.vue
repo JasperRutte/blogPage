@@ -3,7 +3,7 @@
         <h2>Edit link.</h2>
         <div class="bigCard p-3">
             <form>
-                <input v-model="linkPost.title" class="form-control"><br>
+                <input v-model="linkPost.title" class="form-control" maxlength="50"><br>
                 <textarea v-model="linkPost.contents" class="form-control"></textarea>
 
 
@@ -32,9 +32,8 @@ export default {
         axios.get(`/api/link/${this.$route.params.id}`)
             .then(response => {
                 this.linkPost = response.data.link;
-                // this.hasLoaded = true
-                console.log(response.data, 'test')
-                console.log(response.data.link)
+                console.log(response.data, 'test');
+                console.log(response.data.link);
             })
             .catch(error => {
                 console.error(error);
@@ -45,12 +44,12 @@ export default {
         updateLink(){
             axios.put(`/api/link/${this.$route.params.id}/update`, this.linkPost)
                 .then(response => {
-                    console.log("success", response)
+                    console.log("success", response);
                     this.$router.push("/links");
                 })
                 .catch(error => {
-                    this.error = true
-                    console.log("failed", error)
+                    this.error = true;
+                    console.log("failed", error);
                 })
         },
     }

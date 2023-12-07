@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'userLoggedIn'], function () {
     Route::post('/blog/create', [BlogController::class, 'create']);
     Route::put('/blog/{id}/update', [BlogController::class, 'update']);
     Route::delete('/blog/{id}/delete', [BlogController::class, 'delete']);
@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/link/{id}/update', [LinkController::class, 'update']);
 });
 
-
+// authentication
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/test', [AuthController::class, 'test']);
@@ -51,17 +51,11 @@ Route::post('/authCheck',[AuthController::class, 'authenticatedCheck']);
 //blogs
 Route::get('/blogs', [BlogController::class, 'index']);
 Route::get('/blog/{id}',[BlogController::class, 'show']);
-//Route::post('/blog/create', [BlogController::class, 'create']);
-//Route::put('/blog/{id}/update', [BlogController::class, 'update']);
-//Route::delete('/blog/{id}/delete', [BlogController::class, 'delete']);
 
 
 //links
 Route::get('/links',[LinkController::class, 'index']);
 Route::get('/link/{id}',[LinkController::class, 'show']);
-//Route::post('/link/create', [LinkController::class, 'create']);
-//Route::delete('/link/{id}/delete', [LinkController::class, 'delete']);
-//Route::put('/link/{id}/update', [LinkController::class, 'update']);
 
 //user
 Route::get('/getUser/{id}', [Controller::class, 'getUserById']);

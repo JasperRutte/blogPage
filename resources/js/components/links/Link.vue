@@ -28,8 +28,8 @@
         mounted() {
             axios.get('/api/links')
                 .then(response => {
-                    console.log(response.data)
-                    this.links = response.data
+                    console.log(response.data);
+                    this.links = response.data;
                 })
         }
     }

@@ -49,28 +49,28 @@ export default {
     data() {
         return {
             blogPosts: [],
-            LinkPosts: []
+            LinkPosts: [],
         }
     },
 
     computed: {
         recentBlogPosts() {
-            return this.blogPosts.slice(-4).reverse()
+            return this.blogPosts.slice(-4).reverse();
         },
         recentLinkPosts() {
-            return this.LinkPosts.slice(-4).reverse()
+            return this.LinkPosts.slice(-4).reverse();
         }
     },
 
     mounted() {
         axios.get('/api/blogs')
             .then(response => {
-                this.blogPosts = response.data
+                this.blogPosts = response.data;
             })
 
         axios.get('/api/links')
             .then(response => {
-                this.LinkPosts = response.data
+                this.LinkPosts = response.data;
             })
     },
 

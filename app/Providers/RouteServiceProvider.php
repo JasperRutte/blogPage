@@ -37,4 +37,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
     }
+    protected $middlewareGroups = [
+        'web' => [
+            \App\Http\Middleware\CheckAuthentication::class,
+        ],
+    ];
 }

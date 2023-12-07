@@ -30,7 +30,7 @@ export default {
         return {
             loggedIn: false,
             loginDetails: {
-                email: "jkunde@example.com",
+                email: "tara.volkman@example.net",
                 password: "test",
                 loadPage: false,
             },
@@ -49,25 +49,27 @@ export default {
                     localStorage.setItem('token', token);
                     axios.get('/api/user')
                         .then(userResponse => {
+                            console.log("dlkawjdlkawjdaw", userResponse.data)
+                            console.log(JSON.stringify(userResponse.data))
                             localStorage.setItem('userData', JSON.stringify(userResponse.data));
-                            location.reload()
+                            location.reload();
                         })
                         .catch(error =>{
                             console.log(error);
                         })
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log(error);
                 })
         },
 
         UserLogout() {
             axios.post('api/logout')
                 .then(response => {
-                    axios.defaults.headers.common = null
+                    axios.defaults.headers.common = null;
                     localStorage.removeItem('token');
                     localStorage.removeItem('userData');
-                    location.reload()
+                    location.reload();
                 })
                 .catch(error => {
                     console.log(error);
@@ -77,5 +79,3 @@ export default {
 }
 
 </script>
-
-<!--userData:""<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\"\n          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <script type=\"module\" src=\"http://127.0.0.1:5173/@vite/client\"></script><script type=\"module\" src=\"http://127.0.0.1:5173/resources/js/app.js\"></script></head>\n<body>\n    <div id=\"app\">\n        <App />\n    </div>\n</body>\n</html>\n""-->

@@ -5,7 +5,7 @@
         <div class="bigCard p-3">
             <form>
                 <label>Title</label><br>
-                <input v-model="linksData.title" class="form-control"><br>
+                <input v-model="linksData.title" class="form-control" maxlength="50"><br>
                 <label>Link</label><br>
                 <textarea v-model="linksData.contents" class="form-control"></textarea>
             </form>
@@ -25,7 +25,7 @@ export default {
             linksData: {
                 title: "",
                 contents: "",
-                userId: "",
+                user_id: "",
             },
             error: false,
             linkPosts: []
@@ -47,7 +47,7 @@ export default {
         }
     },
     mounted() {
-        this.linksData.userId = this.user.id;
+        this.linksData.user_id = this.user.id;
     }
 }
 

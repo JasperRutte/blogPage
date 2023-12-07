@@ -4,9 +4,10 @@
         <div class="bigCard rounded p-3">
             <form>
                 <label>Title</label>
-                <input v-model="blogPost.title" class="form-control"><br>
+                <input v-model="blogPost.title" class="form-control" maxlength="50"><br>
                 <label>contents</label>
-                <textarea v-model="blogPost.contents" class="form-control"></textarea>
+                <textarea v-model="blogPost.contents" class="form-control" maxlength="10000"></textarea>
+                <p v-if="blogPost.contents">{{blogPost.contents.length}} / 10000</p>
             </form>
 
             <p @click="updateBlog" class="text-primary mt-4" style="cursor: pointer">Update</p>
@@ -31,7 +32,7 @@ export default {
         axios.get(`/api/blog/`+this.$route.params.id)
             .then(response => {
                 this.blogPost = response.data.blog;
-                console.log(this.blogPost)
+                console.log(this.blogPost);
             })
             .catch(error => {
                 console.error(error);
@@ -43,12 +44,12 @@ export default {
             if (confirm("Are you sure?")) {
                 axios.put(`/api/blog/${this.$route.params.id}/update`, this.blogPost)
                     .then(response => {
-                        console.log("success", response)
+                        console.log("success", response);
                         this.$router.push("/blog");
                     })
                     .catch(error => {
-                        this.error = true
-                        console.log("failed", error)
+                        this.error = true;
+                        console.log("failed", error);
                     })
             }
         },

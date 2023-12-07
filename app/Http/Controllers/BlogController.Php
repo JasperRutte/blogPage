@@ -20,12 +20,7 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
-//        if (!auth()->user()) {
-//            return response()->json(['message' => 'User not logged in'], 401);
-//        }
-
-//        dd($request->title);
-        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->title) > 25 || strlen($request->contents) < 10) {
+        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->title) > 50 || strlen($request->contents) < 10) {
             return response()->json(['message' => 'Fill in all fields'], 401);
         }
 
@@ -43,7 +38,6 @@ class BlogController extends Controller
 //        }
 
 
-
         $newBlogPost = new Blog;
         $newBlogPost->title = $request->title;
         $newBlogPost->contents = $request->contents;
@@ -54,28 +48,21 @@ class BlogController extends Controller
     public function show($id)
     {
         $specificBlogPost = Blog::find($id);
-//        dd($specificBlogPost);
         return ["blog" => $specificBlogPost];
     }
 
     public function delete($id)
     {
-        if (!auth()->user()) {
-            return response()->json(['message' => 'User not logged in'], 401);
-        }
-
         $deletedBlog = Blog::find($id);
         $deletedBlog->delete();
     }
 
     public function update(Request $request)
     {
-        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->contents) < 10) {
+        $updatedBlog = Blog::where("id", $request->id)->first();
+        if (!isset($request->title) || !isset($request->contents) || strlen($request->title) < 3 || strlen($request->title) > 50 || strlen($request->contents) < 10 || strlen($request->contents) > 10000) {
             return response()->json(['message' => 'Fill in all fields'], 401);
         }
-
-
-        $updatedBlog = Blog::where("id", $request->id)->first();
         $updatedBlog->title = $request->title;
         $updatedBlog->contents = $request->contents;
 

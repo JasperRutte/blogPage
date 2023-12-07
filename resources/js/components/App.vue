@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
 
     name: "App",
@@ -28,29 +26,10 @@ export default {
 
     },
 
-    mounted() {
-        axios.get('api/user')
-            .then(response => {
-                localStorage.setItem('userData', JSON.stringify(response.data))
-                console.log('success',  JSON.parse(localStorage.getItem('userData')));
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-                if (localStorage.getItem("token")) {
-                    // axios.defaults.headers.common = null
-                    // localStorage.removeItem('token');
-                    // localStorage.removeItem('userData');
-                }
-            })
-    },
 }
 </script>
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
-
 body {
     color: #F4F4F4;
     background-color: #161C1C;

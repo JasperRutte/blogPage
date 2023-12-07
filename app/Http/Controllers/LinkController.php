@@ -19,11 +19,11 @@ class LinkController extends Controller
 
 
     public function create(Request $request){
-        if (!auth()->user()) {
-            return response()->json(['message' => 'User not logged in'],401);
-        }
+//        if (!auth()->user()) {
+//            return response()->json(['message' => 'User not logged in'],401);
+//        }
 
-        if (!isset($request->contents) || !isset($request->title) || strlen($request->contents) < 1 || strlen($request->title) < 1 || strlen($request->title) > 25) {
+        if (!isset($request->contents) || !isset($request->title) || strlen($request->contents) < 1 || strlen($request->title) < 1 || strlen($request->title) > 50) {
             return response()->json(['message' => 'Fill in all fields'], 401);
         }
 
@@ -31,7 +31,7 @@ class LinkController extends Controller
         $newLink = new Link();
         $newLink->title = $request->title;
         $newLink->contents = $request->contents;
-        $newLink->user_id = $request->userId;
+        $newLink->user_id = $request->user_id;
 
         if (filter_var($newLink->contents, FILTER_VALIDATE_URL) === FALSE) {
             return response()->json(['message' => 'Invalid link'],401);
@@ -48,22 +48,13 @@ class LinkController extends Controller
     }
 
     public function delete($id){
-        if (!auth()->user()) {
-            return response()->json(['message' => 'User not logged in'],401);
-        }
-
         $deletedLink = Link::find($id);
         $deletedLink->delete();
     }
 
     public function update(Request $request)
     {
-        if (!auth()->user()) {
-            return response()->json(['message' => 'User not logged in'],401);
-        }
-
-
-        if (!isset($request->contents) || !isset($request->title) || strlen($request->title) < 1 || strlen($request->contents) < 1 || strlen($request->title) > 25) {
+        if (!isset($request->contents) || !isset($request->title) || strlen($request->title) < 1 || strlen($request->contents) < 1 || strlen($request->title) > 50) {
             return response()->json(['message' => 'Fill in the form correctly'], 401);
         }
 

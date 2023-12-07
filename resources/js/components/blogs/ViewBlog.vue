@@ -48,12 +48,12 @@ export default {
         axios.get(`/api/blog/${this.$route.params.id}`)
             .then(response => {
                 this.blogPost = response.data.blog;
-                this.blogPost.created_at = this.formatDateTime(this.blogPost.created_at)
-                this.hasLoaded = true
+                this.blogPost.created_at = this.formatDateTime(this.blogPost.created_at);
+                this.hasLoaded = true;
 
                 axios.get(`/api/getUser/${response.data.blog.user_id}`)
                     .then(returnedUser => {
-                        this.userPosted = returnedUser.data.user.name
+                        this.userPosted = returnedUser.data.user.name;
                     })
             })
             .catch(error => {
