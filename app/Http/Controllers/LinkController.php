@@ -23,7 +23,7 @@ class LinkController extends Controller
 //            return response()->json(['message' => 'User not logged in'],401);
 //        }
 
-        if (!isset($request->contents) || !isset($request->title) || strlen($request->contents) < 1 || strlen($request->title) < 1 || strlen($request->title) > 50) {
+        if (!isset($request->contents) || !isset($request->title) || strlen($request->contents) < 1 || strlen($request->contents) > 2000 || strlen($request->title) < 1 || strlen($request->title) > 50) {
             return response()->json(['message' => 'Fill in all fields'], 401);
         }
 
@@ -54,7 +54,7 @@ class LinkController extends Controller
 
     public function update(Request $request)
     {
-        if (!isset($request->contents) || !isset($request->title) || strlen($request->title) < 1 || strlen($request->contents) < 1 || strlen($request->title) > 50) {
+        if (!isset($request->contents) || !isset($request->title) || strlen($request->contents) < 1 || strlen($request->contents) > 2000 || strlen($request->title) < 1 || strlen($request->title) > 50) {
             return response()->json(['message' => 'Fill in the form correctly'], 401);
         }
 

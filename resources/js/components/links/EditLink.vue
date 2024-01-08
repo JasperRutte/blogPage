@@ -4,7 +4,8 @@
         <div class="bigCard p-3">
             <form>
                 <input v-model="linkPost.title" class="form-control" maxlength="50"><br>
-                <textarea v-model="linkPost.contents" class="form-control"></textarea>
+                <textarea v-model="linkPost.contents" class="form-control" maxlength="2000"></textarea>
+                <p v-if="linkPost.contents">{{linkPost.contents.length}} / 2000</p>
 
 
             </form>

@@ -7,7 +7,9 @@
                 <label>Title</label><br>
                 <input v-model="linksData.title" class="form-control" maxlength="50"><br>
                 <label>Link</label><br>
-                <textarea v-model="linksData.contents" class="form-control"></textarea>
+                <textarea v-model="linksData.contents" class="form-control" maxlength="2000"></textarea>
+                <p v-if="linksData.contents">{{linksData.contents.length}} / 2000</p>
+
             </form>
             <p @click="createBlog" class="text-info mt-3" style="cursor: pointer">submit</p>
         </div>
