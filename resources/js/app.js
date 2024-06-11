@@ -13,8 +13,6 @@ import createLink from "./components/links/CreateLink.vue";
 import ViewLink from "./components/links/ViewLink.vue";
 import EditLink from "./components/links/EditLink.vue";
 
-
-
 import Blog from "./components/blogs/Blog.vue";
 import CreateBlog from "./components/blogs/CreateBlog.vue"
 import ViewBlog from "./components/blogs/ViewBlog.vue";

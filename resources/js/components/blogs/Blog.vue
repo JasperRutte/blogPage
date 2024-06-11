@@ -37,7 +37,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/blogs')
+        axios.get('/blogs')
             .then(response => {
                 this.blogPosts = response.data;
             })
